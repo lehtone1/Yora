@@ -10,18 +10,29 @@ import com.buzz.yora.R;
  * Created by lehtone1 on 18/04/17.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
+
+    private View loginButton;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
         setContentView(R.layout.activity_login);
+
+        loginButton = findViewById(R.id.activity_login_login);
+        if(loginButton != null) {
+            loginButton.setOnClickListener(this);
+        }
     }
 
-    public void doLogin(View view) {
-        application.getAuth().getUser().setLoggedIn(true);
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+
+    @Override
+    public void onClick(View view) {
+
+        if (view == loginButton) {
+            startActivity(new Intent(this, LoginNarrowActivity.class));
+        }
+
     }
 }
